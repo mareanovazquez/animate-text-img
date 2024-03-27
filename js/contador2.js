@@ -1,6 +1,6 @@
 function incrementarNumero2() {
-    var contador = 0;
-    var intervalo = setInterval(function () {
+    let contador = 0;
+    let intervalo = setInterval(function () {
         document.getElementById('contador-img-text').textContent = contador + "%";
         contador += 1;
         if (contador > 100) {
@@ -10,6 +10,6 @@ function incrementarNumero2() {
 }
 
 // Llamar a la función cuando se carga el documento
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("DOMContentLoaded", function () {
     incrementarNumero2();
 });
