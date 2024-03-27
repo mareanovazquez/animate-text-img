@@ -1,0 +1,186 @@
+body {
+    font-family: "Fira Sans", sans-serif;
+}
+.contenedor-contador {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+#contador {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+hr {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.contenedor-img-txt {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.img-txt {
+    padding: 10px;
+    background-image: url('../img/selva.jpg');
+    background-repeat: repeat;
+    background-position: bottom;
+    background-size: contain;
+    background-clip: text;
+    font-size: 48px;
+    font-weight: 900;
+    color: transparent;
+    /* Hacer el texto transparente */
+
+    font-family: "Fira Sans", sans-serif;
+}
+
+.contenedor-img-txt-animate {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.img-txt-animate {
+    padding: 10px;
+    font-size: 48px;
+    font-weight: 900;
+    font-family: "Fira Sans", sans-serif;
+    color: transparent;
+    background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, #F694C1 50%, #F694C1 100%);
+    background-size: auto 200%;
+    background-position: 0 60%;
+    /* Comenzar desde abajo */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-stroke: 2px black;
+    letter-spacing: 2px;
+    
+    animation: cargaFondo 2s linear ;
+}
+
+
+
+@keyframes cargaFondo {
+    0% {
+        background-position: 0 0;
+        /* Comenzar desde abajo */
+    }
+
+    100% {
+        background-position: 0 60%;
+        /* Cargar completamente */
+    }
+}
+
+h3 {
+    margin-bottom: 20px;
+}
+
+/* IMG TXT ANIMATE 2 */
+.contenedor-img-txt-animate2 {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.img-txt-animate2 {
+    padding: 10px;
+    font-size: 48px;
+    font-weight: 900;
+    font-family: "Fira Sans", sans-serif;
+    color: transparent;
+    background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, #296EB4 50%, #FDB833 100%);
+    background-size: auto 200%;
+    background-position: 0 100%;
+    /* Comenzar desde abajo */
+    
+    background-clip: text;
+    
+    animation: cargaFondo2 2s linear ;
+}
+
+
+
+@keyframes cargaFondo2 {
+    0% {
+        background-position: 0 0;
+        /* Comenzar desde abajo */
+    }
+
+    100% {
+        background-position: 0 100%;
+        /* Cargar completamente */
+    }
+}
+
+h3 {
+    margin-bottom: 20px;
+}
+
+/* IMG TXT ANIMATE 3 */
+
+.contenedor-img-txt-animate3 {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.img-txt-animate3 {
+    padding: 10px;
+    font-size: 48px;
+    font-weight: 900;
+    font-family: "Fira Sans", sans-serif;
+    color: transparent;
+    background-image: linear-gradient(to bottom, transparent 0%, transparent 0%);
+    background-size: auto 200%;
+    background-position: 0 100%; /* Comenzar desde abajo */
+    background-clip: text;
+    /* Aquí definimos la imagen de fondo */
+    background-image: url('../img/selva.jpg');
+    /* Puedes ajustar otras propiedades relacionadas con la imagen de fondo aquí */
+    animation: cargaFondo3 2s linear ;
+}
+
+
+
+@keyframes cargaFondo3 {
+    0% {
+        background-position: 0 0;
+        opacity: 0;
+        /* Comenzar desde abajo */
+    }
+
+    100% {
+        background-position: auto 100%;
+        opacity: 1;
+        /* Cargar completamente */
+    }
+}
+
+h3 {
+    margin-bottom: 20px;
+}
