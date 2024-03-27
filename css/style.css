@@ -113,10 +113,8 @@ h3 {
     background-size: auto 200%;
     background-position: 0 100%;
     /* Comenzar desde abajo */
-    
-    background-clip: text;
-    
-    animation: cargaFondo2 2s linear ;
+        background-clip: text;
+        animation: cargaFondo2 2s linear ;
 }
 
 
@@ -178,6 +176,48 @@ h3 {
         background-position: auto 100%;
         opacity: 1;
         /* Cargar completamente */
+    }
+}
+
+h3 {
+    margin-bottom: 20px;
+}
+
+/* CONTADOR IMG ANIMATE */
+.contenedor-contador-animate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+#contador-img-text {
+    padding: 10px;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: "Fira Sans", sans-serif;
+    color: transparent;
+    background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, #255957 50%, #255957 100%);
+    background-size: auto 200%;
+    background-position: 0 100%;
+    /* Comenzar desde abajo */
+        background-clip: text;
+        animation: cargaFondo4 2s linear ;
+}
+
+@keyframes cargaFondo4 {
+    0% {
+        background-position: 0 0;
+        
+        /* Comenzar desde abajo */
+    }
+
+    100% {
+        background-position: auto 100%;
+                /* Cargar completamente */
     }
 }
 
