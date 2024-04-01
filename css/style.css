@@ -242,3 +242,38 @@ h3 {
     font-size: 24px;
     font-weight: bold;
 }
+
+
+/* TEXT RANDOM BINARIO*/
+
+.contenedor-text-binary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+#text-binary {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* TEXT RANDOM BINARIO 2*/
+
+.contenedor-text-binary2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+#text-binary2 {
+    font-size: 24px;
+    font-weight: bold;
+}
