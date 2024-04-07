@@ -1,7 +1,9 @@
 function incrementarNumero() {
     let contador = 0;
+    let numero = document.getElementById('contador');
+    
     let intervalo = setInterval(function () {
-        document.getElementById('contador').textContent = contador + "%";
+        numero.textContent = contador + "%";
         contador += 1;
         if (contador > 75) {
             clearInterval(intervalo);
