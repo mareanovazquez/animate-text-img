@@ -205,7 +205,7 @@ h3 {
     background-position: 0 100%;
     /* Comenzar desde abajo */
         background-clip: text;
-        animation: cargaFondo4 2s linear ;
+        animation: cargaFondo4 2s ease-out ;
 }
 
 @keyframes cargaFondo4 {

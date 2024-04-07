@@ -1,12 +1,13 @@
 function incrementarNumero2() {
     let contador = 0;
+    let numero = document.getElementById('contador-img-text');
     let intervalo = setInterval(function () {
-        document.getElementById('contador-img-text').textContent = contador + "%";
+        numero.textContent = contador + "%";
         contador += 1;
         if (contador > 100) {
             clearInterval(intervalo);
         }
-    }, 50); // Intervalo de actualización en milisegundos
+    }, 30); // Intervalo de actualización en milisegundos
 }
 
 // Llamar a la función cuando se carga el documento
