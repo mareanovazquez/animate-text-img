@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Obtenemos el elemento donde se mostrará el texto definitivo
     let textBinaryElement = document.getElementById('text-binary2');
     // Obtenemos el texto definitivo
-    let textoDefinitivo = textBinaryElement.innerText;
+    let textoDefinitivo = textBinaryElement.textContent;
 
     // Variable para controlar si un carácter ya ha sido revelado
     let caracterRevelado = Array(textoDefinitivo.length).fill(false);
@@ -16,18 +16,18 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             // Actualizamos solo los caracteres que aún no han sido revelados
-            let nuevoTexto = textBinaryElement.innerText.split('').map(function (caracter, index) {
+            let nuevoTexto = textBinaryElement.textContent.split('').map(function (caracter, index) {
                 if (!caracterRevelado[index]) {
                     return binaryAleatorio[index];
                 } else {
                     return caracter;
                 }
             }).join('');
-            textBinaryElement.innerText = nuevoTexto;
+            textBinaryElement.textContent = nuevoTexto;
 
             // Si el carácter en la posición letraIndex aún no ha sido revelado, lo mostramos
             if (!caracterRevelado[letraIndex]) {
-                textBinaryElement.innerText = textBinaryElement.innerText.substring(0, letraIndex) + textoDefinitivo.charAt(letraIndex) + textBinaryElement.innerText.substring(letraIndex + 1);
+                textBinaryElement.textContent = textBinaryElement.textContent.substring(0, letraIndex) + textoDefinitivo.charAt(letraIndex) + textBinaryElement.textContent.substring(letraIndex + 1);
                 caracterRevelado[letraIndex] = true; // Marcamos el carácter como revelado
             }
 
