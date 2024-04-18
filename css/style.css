@@ -155,13 +155,20 @@ h3 {
     font-family: "Fira Sans", sans-serif;
     color: transparent;
     background-image: linear-gradient(to bottom, transparent 0%, transparent 0%);
+    
+    /*Establece el tamaño del fondo como 200% de su tamaño original.*/
     background-size: auto 200%;
+
+     /* Comenzar desde abajo */
     background-position: 0 100%;
-    /* Comenzar desde abajo */
+   
+    /*El fondo se recorte al contorno del texto.*/
     background-clip: text;
+
     /* Aquí definimos la imagen de fondo */
     background-image: url('../img/selva.jpg');
-    /* Puedes ajustar otras propiedades relacionadas con la imagen de fondo aquí */
+    
+    /*Aplica la animación cargaFondo3 al texto durante 2 segundos con una interpolación lineal.*/
     animation: cargaFondo3 2s linear;
 }
 
@@ -186,7 +193,7 @@ h3 {
 }
 
 /* IMG TXT ANIMATE 4 */
-.contenedor-img-txt-animate4 {
+.contenedor-img-text-animate4 {
     padding-top: 20px;
     display: flex;
     flex-direction: column;
@@ -196,58 +203,48 @@ h3 {
     margin: 0 auto;
 }
 
-p {
-    text-transform: uppercase;
-    letter-spacing: .5em;
-    display: inline-block;
-    border: 4px double rgba(255, 255, 255, .25);
-    border-width: 4px 0;
-    padding: 1.5em 0em;
-
-    width: 40em;
-    margin: 0 0 0 -20em;
-}
-
-p span {
-
-    font: 700 5em/1 "Oswald", sans-serif;
-    letter-spacing: 50;
+.contenedor-img-text-animate4  span {
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 900;
+    font-size: 60px;
     padding: .25em 0 .325em;
     display: block;
     margin: 0 auto;
-    text-shadow: 0 0 80px rgba(255, 255, 255, .5);
-
+    letter-spacing: 10px;
+    
     /* Clip Background Image */
+    background-image: url('../img/colores.jpg');
 
-    background: url(http://static.colourlovers.com/uploads/images/4/44/44982.pic.jpg) repeat-y;
-    -webkit-background-clip: text;
+    /*Define que la imagen de fondo se recorte según el contenido del texto.*/
+    background-clip: text; 
 
     /* Animate Background Image */
+    /*Hace que el color del texto sea transparente para que la imagen de fondo sea visible a través de él.*/
+    color: transparent; 
 
-    -webkit-text-fill-color: transparent;
-    -webkit-animation: aitf 10s linear infinite;
+    /*10 segundos de animación con una interpolación lineal y se repite infinitamente.*/
+    animation: animateText4 10s linear infinite;
 
     /* Activate hardware acceleration for smoother animations */
-
-    -webkit-transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0); 
+    
+    /*Oculta la parte posterior del elemento durante las transformaciones 3D, 
+    lo que mejora el rendimiento de la animación.*/
+    backface-visibility: hidden; 
 }
 
-/* Animate Background Image */
 
-@-webkit-keyframes aitf {
+  /* Animate Background Image */
+@keyframes animateText4{
     0% {
         background-position: -200% 50%;
     }
-
     100% {
         background-position: 250% 50%;
     }
-
-    0% {
-        background-position: -100% 50%;
-    }
 }
+
+
 
 /* CONTADOR IMG ANIMATE */
 .contenedor-contador-animate {
