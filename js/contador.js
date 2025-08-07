@@ -1,17 +1,20 @@
-function incrementarNumero() {
-    let contador = 0;
-    let numero = document.getElementById('contador');
-    
-    let intervalo = setInterval(function () {
-        numero.textContent = contador + "%";
-        contador += 1;
-        if (contador > 75) {
-            clearInterval(intervalo);
+
+function incrementarNumero({ elementoId = 'contador', inicio = 0, fin = 75, paso = 1, intervalo = 50 } = {}) {
+    let contador = inicio;
+    const numero = document.getElementById(elementoId);
+
+    if (!numero) return console.warn(`Elemento con id "${elementoId}" no encontrado.`);
+
+    const timer = setInterval(() => {
+        numero.textContent = `${contador}%`;
+        contador += paso;
+        if (contador > fin) {
+            clearInterval(timer);
         }
-    }, 50); // Intervalo de actualización en milisegundos
+    }, intervalo);
 }
 
-// Llamar a la función cuando se carga el documento
-document.addEventListener("DOMContentLoaded", function () {
-    incrementarNumero();
+document.addEventListener("DOMContentLoaded", () => {
+    incrementarNumero(); // Podés pasarle parámetros si querés cambiar el comportamiento
 });
+
