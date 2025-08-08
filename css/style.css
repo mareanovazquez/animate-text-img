@@ -22,6 +22,63 @@ hr {
     margin: 0 auto;
 }
 
+/* CONTENEDOR NUMERO CIRCULO */
+.contenedor-contador-circle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+}
+
+.circle-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 20px 0;
+}
+
+.progress-ring {
+    width: 200px;
+    height: 200px;
+    transform: rotate(-90deg);
+    /* Empezar desde arriba */
+}
+
+.progress-ring__background {
+    fill: none;
+    stroke: #e6e6e6;
+    stroke-width: 8;
+}
+
+.progress-ring__progress {
+    fill: none;
+    stroke: #4CAF50;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.03s ease;
+}
+
+#contador-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+}
+
+h3 {
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+
 .contenedor-img-txt {
     padding-top: 20px;
     display: flex;
@@ -155,19 +212,19 @@ h3 {
     font-family: "Fira Sans", sans-serif;
     color: transparent;
     background-image: linear-gradient(to bottom, transparent 0%, transparent 0%);
-    
+
     /*Establece el tamaño del fondo como 200% de su tamaño original.*/
     background-size: auto 200%;
 
-     /* Comenzar desde abajo */
+    /* Comenzar desde abajo */
     background-position: 0 100%;
-   
+
     /*El fondo se recorte al contorno del texto.*/
     background-clip: text;
 
     /* Aquí definimos la imagen de fondo */
     background-image: url('../img/selva.jpg');
-    
+
     /*Aplica la animación cargaFondo3 al texto durante 2 segundos con una interpolación lineal.*/
     animation: cargaFondo3 2s linear;
 }
@@ -203,7 +260,7 @@ h3 {
     margin: 0 auto;
 }
 
-.contenedor-img-text-animate4  span {
+.contenedor-img-text-animate4 span {
     font-family: "Fira Sans", sans-serif;
     font-weight: 900;
     font-size: 60px;
@@ -211,34 +268,35 @@ h3 {
     display: block;
     margin: 0 auto;
     letter-spacing: 10px;
-    
+
     /* Clip Background Image */
     background-image: url('../img/colores.jpg');
 
     /*Define que la imagen de fondo se recorte según el contenido del texto.*/
-    background-clip: text; 
+    background-clip: text;
 
     /* Animate Background Image */
     /*Hace que el color del texto sea transparente para que la imagen de fondo sea visible a través de él.*/
-    color: transparent; 
+    color: transparent;
 
     /*10 segundos de animación con una interpolación lineal y se repite infinitamente.*/
     animation: animateText4 10s linear infinite;
 
     /* Activate hardware acceleration for smoother animations */
-    transform: translate3d(0, 0, 0); 
-    
+    transform: translate3d(0, 0, 0);
+
     /*Oculta la parte posterior del elemento durante las transformaciones 3D, 
     lo que mejora el rendimiento de la animación.*/
-    backface-visibility: hidden; 
+    backface-visibility: hidden;
 }
 
 
-  /* Animate Background Image */
-@keyframes animateText4{
+/* Animate Background Image */
+@keyframes animateText4 {
     0% {
         background-position: -200% 50%;
     }
+
     100% {
         background-position: 250% 50%;
     }
