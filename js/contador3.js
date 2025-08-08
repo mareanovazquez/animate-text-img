@@ -16,7 +16,7 @@ function incrementarNumeroCircle({
 
             // Calcular la circunferencia del círculo
             const radio = circulo.r.baseVal.value;
-            const circunferencia = radio * 2 * Math.PI;
+            const circunferencia = 2 *radio * Math.PI;
             
             // Configurar el círculo inicialmente
             circulo.style.strokeDasharray = `${circunferencia} ${circunferencia}`;

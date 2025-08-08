@@ -31,7 +31,6 @@ hr {
     width: 300px;
     margin: 0 auto;
     padding: 20px;
-    background: white;
 }
 
 .circle-container {
@@ -56,7 +55,7 @@ hr {
 
 .progress-ring__progress {
     fill: none;
-    stroke: #4CAF50;
+    stroke: rgb(214, 64, 64);
     stroke-width: 8;
     stroke-linecap: round;
     transition: stroke-dashoffset 0.03s ease;
