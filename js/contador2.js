@@ -1,16 +1,16 @@
-function incrementarNumero2() {
-    let contador = 0;
-    let numero = document.getElementById('contador-img-text');
-    let intervalo = setInterval(function () {
-        numero.textContent = contador + "%";
-        contador += 1;
-        if (contador > 100) {
-            clearInterval(intervalo);
+function incrementarNumeroUp({elementoId = 'contador-img-text', inicio = 0, fin = 100, paso = 1, intervalo = 30} = { }) {
+    let contador = inicio;
+    let numero = document.getElementById(elementoId);
+    const timerUp = setInterval(() => {
+        numero.textContent = `${contador}%`; // Actualiza el DOM
+        contador += paso; // Incrementa el contador
+        if (contador > fin) { // Si llegó al final
+            clearInterval(timerUp); // Detiene la animación
         }
-    }, 30); // Intervalo de actualización en milisegundos
+    }, intervalo); // Cada 30ms por defecto
 }
-
+ 
 // Llamar a la función cuando se carga el documento
 document.addEventListener("DOMContentLoaded", function () {
-    incrementarNumero2();
+    incrementarNumeroUp();
 });

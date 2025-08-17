@@ -7,8 +7,10 @@
     <title>Incremento de Número</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -16,58 +18,75 @@
         <h3>CONTADOR BÁSICO</h3>
         <div id="contador">0%</div>
     </div>
- <hr>
+    <hr>
+    <div class="contenedor-contador-animate">
+        <h3>CONTADOR ANIMATE TEXT</h3>
+        <div id="contador-img-text">0%</div>
+    </div>
+    <hr>
+    <div class="contenedor-contador-circle">
+        <h3>CONTADOR ANIMATE CIRCLE</h3>
+        <div class="circle-container">
+            <!-- Círculo SVG -->
+            <svg class="progress-ring" viewBox="0 0 120 120">
+                <!-- Círculo de fondo -->
+                <circle class="progress-ring__background" 
+                        cx="60" cy="60" r="40"/>
+                <!-- Círculo de progreso -->
+                <circle class="progress-ring__progress" 
+                        cx="60" cy="60" r="40"
+                        id="progress-circle"/>
+            </svg>
+            <!-- Número en el centro -->
+            <div id="contador-circle">0%</div>
+        </div>
+    </div>
     <div class="contenedor-img-txt">
         <h3>IMAGEN EN TEXTO</h3>
-        <div class="img-txt">JAVASCRIPT</div>
+        <div class="img-txt">NO JAVASCRIPT</div>
     </div>
     <hr>
     <div class="contenedor-img-txt-animate">
         <h3>ANIMACIÓN IMAGEN EN TEXTO</h3>
-        <div class="img-txt-animate">SIN JAVASCRIPT</div>
+        <div class="img-txt-animate">NO JAVASCRIPT</div>
     </div>
-
     <hr>
     <div class="contenedor-img-txt-animate2">
         <h3>ANIMACIÓN IMAGEN EN TEXTO</h3>
         <div class="img-txt-animate2">NO JAVASCRIPT</div>
     </div>
-<hr>
+    <hr>
     <div class="contenedor-img-txt-animate3">
         <h3>ANIMACIÓN IMAGEN EN TEXTO</h3>
         <div class="img-txt-animate3">NO JAVASCRIPT</div>
     </div>
-<hr>
-<div class="contenedor-img-text-animate4">
-    <span>TEXTO BG con CSS</span> 
-</div>
-<hr>
-<div class="contenedor-contador-animate">
-    <h3>CONTADOR ANIMATE TEXT</h3>
-    <div id="contador-img-text">0%</div>
-</div>
     <hr>
-<div class="contenedor-text-random">
-    <h3>TEXTO RANDOM CARACTERES</h3>
-    <div id="text-random">texto hecho con javascript</div>
-</div>
-<hr>
-<div class="contenedor-text-random2">
-    <h3>TEXTO RANDOM ALFABETO</h3>
-    <div id="text-random2">texto hecho con javascript</div>
-</div>
-<hr>
-<div class="contenedor-text-binary">
-    <h3>TEXTO RANDOM BINARIO</h3>
-    <div id="text-binary">texto hecho con javascript</div>
-</div>
-<hr>
-<div class="contenedor-text-binary2">
-    <h3>TEXTO RANDOM BINARIO</h3>
-    <div id="text-binary2">texto hecho con javascript</div>
-</div>
+    <div class="contenedor-img-text-animate4">
+        <span>TEXTO BG con CSS</span>
+    </div>
+    <hr>
+    <div class="contenedor-text-random">
+        <h3>TEXTO RANDOM CARACTERES</h3>
+        <div id="text-random">texto hecho con javascript</div>
+    </div>
+    <hr>
+    <div class="contenedor-text-random2">
+        <h3>TEXTO RANDOM ALFABETO</h3>
+        <div id="text-random2">texto hecho con javascript</div>
+    </div>
+    <hr>
+    <div class="contenedor-text-binary">
+        <h3>TEXTO RANDOM BINARIO</h3>
+        <div id="text-binary">texto hecho con javascript</div>
+    </div>
+    <hr>
+    <div class="contenedor-text-binary2">
+        <h3>TEXTO RANDOM BINARIO</h3>
+        <div id="text-binary2">texto hecho con javascript</div>
+    </div>
     <script src="./js/contador.js"></script>
     <script src="./js/contador2.js"></script>
+    <script src="./js/contador3.js"></script>
     <script src="./js/textRandom.js"></script>
     <script src="./js/textRandom2.js"></script>
     <script src="./js/textBinary.js"></script>
