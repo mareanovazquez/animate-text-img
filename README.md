@@ -26,19 +26,25 @@ Variantes de animaciones donde el fondo del texto se va "cargando" con diferente
 Contador animado que utiliza un gradiente como fondo del texto.
 - Implementación: [`js/contador2.js`](js/contador2.js)
 
-### 5. Texto Random Caracteres
+### 5. Contador con Círculo de Progreso
+Contador animado acompañado de un círculo SVG que se va completando a medida que el número avanza hasta el valor final.
+- El progreso del círculo se calcula a partir de su circunferencia, usando `stroke-dasharray` y `stroke-dashoffset`.
+- La función `incrementarNumeroCircle()` acepta opciones configurables: `elementoId`, `inicio`, `fin`, `paso` e `intervalo`.
+- Implementación: [`js/contador3.js`](js/contador3.js)
+
+### 6. Texto Random Caracteres
 Animación donde el texto aparece reemplazando caracteres aleatorios hasta mostrar el mensaje final.
 - Implementación: [`js/textRandom.js`](js/textRandom.js)
 
-### 6. Texto Random Alfabeto
+### 7. Texto Random Alfabeto
 Similar al anterior, pero los caracteres aleatorios pertenecen solo al alfabeto.
 - Implementación: [`js/textRandom2.js`](js/textRandom2.js)
 
-### 7. Texto Random Binario
+### 8. Texto Random Binario
 El texto aparece reemplazando caracteres por 0 y 1 hasta revelar el mensaje final.
 - Implementación: [`js/textBinary.js`](js/textBinary.js)
 
-### 8. Texto Random Binario Mejorado
+### 9. Texto Random Binario Mejorado
 Versión mejorada donde los caracteres revelados permanecen fijos y el resto sigue cambiando.
 - Implementación: [`js/textBinary2.js`](js/textBinary2.js)
 
