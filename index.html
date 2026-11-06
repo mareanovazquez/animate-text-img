@@ -1,39 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Incremento de Número</title>
+    <title>Animaciones de texto</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
-    <div class="contenedor-contador">
+    <div class="demo">
         <h3>CONTADOR BÁSICO</h3>
         <div id="contador">0%</div>
     </div>
     <hr>
-    <div class="contenedor-contador-animate">
+    <div class="demo">
         <h3>CONTADOR ANIMATE TEXT</h3>
         <div id="contador-img-text">0%</div>
     </div>
     <hr>
-    <div class="contenedor-contador-circle">
+    <div class="demo demo-circle">
         <h3>CONTADOR ANIMATE CIRCLE</h3>
         <div class="circle-container">
             <!-- Círculo SVG -->
-            <svg class="progress-ring" viewBox="0 0 120 120">
+            <svg class="progress-ring" viewBox="0 0 120 120" aria-hidden="true">
                 <!-- Círculo de fondo -->
-                <circle class="progress-ring__background" 
+                <circle class="progress-ring__background"
                         cx="60" cy="60" r="40"/>
                 <!-- Círculo de progreso -->
-                <circle class="progress-ring__progress" 
+                <circle class="progress-ring__progress"
                         cx="60" cy="60" r="40"
                         id="progress-circle"/>
             </svg>
@@ -41,56 +41,110 @@
             <div id="contador-circle">0%</div>
         </div>
     </div>
-    <div class="contenedor-img-txt">
+    <hr>
+    <div class="demo">
         <h3>IMAGEN EN TEXTO</h3>
         <div class="img-txt">NO JAVASCRIPT</div>
     </div>
     <hr>
-    <div class="contenedor-img-txt-animate">
-        <h3>ANIMACIÓN IMAGEN EN TEXTO</h3>
+    <div class="demo">
+        <h3>ANIMACIÓN IMAGEN EN TEXTO: CARGA CON BORDE</h3>
         <div class="img-txt-animate">NO JAVASCRIPT</div>
     </div>
     <hr>
-    <div class="contenedor-img-txt-animate2">
-        <h3>ANIMACIÓN IMAGEN EN TEXTO</h3>
+    <div class="demo">
+        <h3>ANIMACIÓN IMAGEN EN TEXTO: CARGA CON GRADIENTE</h3>
         <div class="img-txt-animate2">NO JAVASCRIPT</div>
     </div>
     <hr>
-    <div class="contenedor-img-txt-animate3">
-        <h3>ANIMACIÓN IMAGEN EN TEXTO</h3>
+    <div class="demo">
+        <h3>ANIMACIÓN IMAGEN EN TEXTO: APARICIÓN CON IMAGEN</h3>
         <div class="img-txt-animate3">NO JAVASCRIPT</div>
     </div>
     <hr>
-    <div class="contenedor-img-text-animate4">
-        <span>TEXTO BG con CSS</span>
+    <div class="demo">
+        <h3>ANIMACIÓN IMAGEN EN TEXTO: FONDO EN MOVIMIENTO</h3>
+        <div class="img-txt-animate4">TEXTO BG con CSS</div>
     </div>
     <hr>
-    <div class="contenedor-text-random">
+    <div class="demo">
+        <h3>OLA DE COLORES</h3>
+        <div class="texto-gradiente">OLA DE COLORES</div>
+    </div>
+    <hr>
+    <div class="demo">
+        <h3>BRILLO QUE PASA</h3>
+        <div class="texto-brillo">BRILLO METÁLICO</div>
+    </div>
+    <hr>
+    <div class="demo">
+        <h3>MÁQUINA DE ESCRIBIR</h3>
+        <!-- --caracteres: cantidad de caracteres del texto (define el ancho y los pasos) -->
+        <div class="texto-maquina" style="--caracteres: 25">Escribiendo con CSS puro.</div>
+    </div>
+    <hr>
+    <div class="demo">
+        <h3>TEXTO NEÓN</h3>
+        <div class="panel-oscuro">
+            <div class="texto-neon">ABIERTO</div>
+        </div>
+    </div>
+    <hr>
+    <div class="demo">
+        <h3>GLITCH</h3>
+        <!-- data-texto se usa para dibujar las copias desplazadas en rojo y cian -->
+        <div class="texto-glitch" data-texto="ERROR DE SEÑAL" aria-hidden="true">ERROR DE SEÑAL</div>
+        <span class="sr-only">ERROR DE SEÑAL</span>
+    </div>
+    <hr>
+    <div class="demo" id="subrayado">
+        <h3>SUBRAYADO ANIMADO (pasá el mouse)</h3>
+        <nav class="menu-subrayado" aria-label="Menú de ejemplo">
+            <a href="#subrayado">Inicio</a>
+            <a href="#subrayado">Servicios</a>
+            <a href="#subrayado">Contacto</a>
+        </nav>
+    </div>
+    <hr>
+    <div class="demo">
         <h3>TEXTO RANDOM CARACTERES</h3>
-        <div id="text-random">texto hecho con javascript</div>
+        <div class="texto-scramble" data-animar-texto data-caracteres="ascii">texto hecho con javascript</div>
     </div>
     <hr>
-    <div class="contenedor-text-random2">
+    <div class="demo">
         <h3>TEXTO RANDOM ALFABETO</h3>
-        <div id="text-random2">texto hecho con javascript</div>
+        <div class="texto-scramble" data-animar-texto data-caracteres="alfabeto">texto hecho con javascript</div>
     </div>
     <hr>
-    <div class="contenedor-text-binary">
+    <div class="demo">
         <h3>TEXTO RANDOM BINARIO</h3>
-        <div id="text-binary">texto hecho con javascript</div>
+        <div class="texto-scramble" data-animar-texto data-caracteres="binario">texto hecho con javascript</div>
     </div>
     <hr>
-    <div class="contenedor-text-binary2">
-        <h3>TEXTO RANDOM BINARIO</h3>
-        <div id="text-binary2">texto hecho con javascript</div>
+    <div class="demo">
+        <h3>TEXTO RANDOM BINARIO: ORDEN ALEATORIO</h3>
+        <div class="texto-scramble" data-animar-texto data-caracteres="binario" data-orden="aleatorio">texto hecho con javascript</div>
     </div>
+    <hr>
+    <div class="demo">
+        <h3>LETRAS EN CASCADA</h3>
+        <div class="texto-cascada" data-cascada>Letras en cascada</div>
+    </div>
+    <hr>
+    <div class="demo">
+        <h3>PALABRAS QUE ROTAN</h3>
+        <div class="frase-rotativa">
+            Hacemos sitios <span class="palabra-rotativa" data-palabras-rotativas="rápidos, modernos, accesibles">rápidos</span>
+        </div>
+    </div>
+    <!-- alAparecer.js va primero: los demás scripts usan cuandoAparezca() -->
+    <script src="./js/alAparecer.js"></script>
     <script src="./js/contador.js"></script>
     <script src="./js/contador2.js"></script>
     <script src="./js/contador3.js"></script>
-    <script src="./js/textRandom.js"></script>
-    <script src="./js/textRandom2.js"></script>
-    <script src="./js/textBinary.js"></script>
-    <script src="./js/textBinary2.js"></script>
+    <script src="./js/textScramble.js"></script>
+    <script src="./js/textCascada.js"></script>
+    <script src="./js/palabrasRotativas.js"></script>
 </body>
 
 </html>

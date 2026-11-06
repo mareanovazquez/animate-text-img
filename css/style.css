@@ -2,19 +2,10 @@ body {
     font-family: "Fira Sans", sans-serif;
 }
 
-.contenedor-contador {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-    padding-bottom: 20px;
-}
-
-#contador {
-    font-size: 24px;
-    font-weight: bold;
+h3 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 hr {
@@ -22,15 +13,69 @@ hr {
     margin: 0 auto;
 }
 
-/* CONTENEDOR NUMERO CIRCULO */
-.contenedor-contador-circle {
+/* Contenedor común de cada ejemplo */
+.demo {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 300px;
+    width: 80%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 0;
+}
+
+/* Texto solo para lectores de pantalla (oculto visualmente) */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Base común para los textos rellenos con una imagen o gradiente */
+.img-txt,
+.img-txt-animate,
+.img-txt-animate2,
+.img-txt-animate3,
+.img-txt-animate4,
+#contador-img-text {
+    padding: 10px;
+    font-size: 48px;
+    font-weight: 900;
+    font-family: "Fira Sans", sans-serif;
+    text-align: center;
+
+    /* El fondo se recorta al contorno del texto */
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* CONTADOR BÁSICO */
+#contador {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* CONTADOR ANIMATE TEXT
+   El relleno lo controla el JS con la variable --progreso (0 a 100),
+   así siempre coincide con el número que se muestra. */
+#contador-img-text {
+    font-size: 30px;
+    background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, #255957 50%, #255957 100%);
+    background-size: auto 200%;
+    background-position: 0 calc(var(--progreso, 0) * 1%);
+}
+
+/* CONTADOR ANIMATE CIRCLE */
+.demo-circle {
+    width: 300px;
 }
 
 .circle-container {
@@ -71,63 +116,18 @@ hr {
     color: #333;
 }
 
-h3 {
-    color: #333;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-/* IMAGEN BG TEXTO */
-
-.contenedor-img-txt {
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-}
-
+/* IMAGEN EN TEXTO */
 .img-txt {
-    padding: 10px;
     background-image: url('../img/selva.jpg');
     background-repeat: no-repeat;
-    /* o repeat si lo necesitás */
     background-position: center;
     background-size: cover;
-
-    font-size: 48px;
-    font-weight: 900;
-    font-family: "Fira Sans", sans-serif;
-
-    color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
-/* ANIMACIÓN IMAGEN EN TEXTO */
-.contenedor-img-txt-animate {
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-}
-
+/* ANIMACIÓN IMAGEN EN TEXTO: CARGA CON BORDE */
 .img-txt-animate {
-    padding: 10px;
     font-size: clamp(24px, 6vw, 64px);
-    font-weight: 900;
-    font-family: "Fira Sans", sans-serif;
     letter-spacing: 2px;
-
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-stroke: 2px black;
 
     background-image: linear-gradient(to bottom, transparent 30%, #F694C1 70%);
@@ -147,153 +147,54 @@ h3 {
     }
 }
 
-
-h3 {
-    margin-bottom: 20px;
-}
-
-/* IMG TXT ANIMATE 2 */
-.contenedor-img-txt-animate2 {
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-}
-
+/* ANIMACIÓN IMAGEN EN TEXTO: CARGA CON GRADIENTE */
 .img-txt-animate2 {
-    padding: 10px;
-    font-size: 48px;
-    font-weight: 900;
-    font-family: "Fira Sans", sans-serif;
-    color: transparent;
     background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, #296EB4 50%, #FDB833 100%);
     background-size: auto 200%;
+    /* Estado final: fondo cargado completamente */
     background-position: 0 100%;
-    /* Comenzar desde abajo */
-    background-clip: text;
-    animation: cargaFondo2 2s linear;
+    /* Reutiliza la misma animación: el fondo sube desde abajo */
+    animation: cargaFondo 2s linear;
 }
 
-
-
-@keyframes cargaFondo2 {
-    0% {
-        background-position: 0 0;
-        /* Comenzar desde abajo */
-    }
-
-    100% {
-        background-position: 0 100%;
-        /* Cargar completamente */
-    }
-}
-
-h3 {
-    margin-bottom: 20px;
-}
-
-/* IMG TXT ANIMATE 3 */
-
-.contenedor-img-txt-animate3 {
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-}
-
+/* ANIMACIÓN IMAGEN EN TEXTO: APARICIÓN CON IMAGEN */
 .img-txt-animate3 {
-    padding: 10px;
-    font-size: 48px;
-    font-weight: 900;
-    font-family: "Fira Sans", sans-serif;
-    color: transparent;
-    background-image: linear-gradient(to bottom, transparent 0%, transparent 0%);
-
-    /*Establece el tamaño del fondo como 200% de su tamaño original.*/
-    background-size: auto 200%;
-
-    /* Comenzar desde abajo */
-    background-position: 0 100%;
-
-    /*El fondo se recorte al contorno del texto.*/
-    background-clip: text;
-
-    /* Aquí definimos la imagen de fondo */
     background-image: url('../img/selva.jpg');
-
-    /*Aplica la animación cargaFondo3 al texto durante 2 segundos con una interpolación lineal.*/
+    /* La imagen ocupa el doble de alto para poder desplazarse */
+    background-size: auto 200%;
+    background-position: 0 100%;
+    /* La imagen se desplaza mientras el texto aparece */
     animation: cargaFondo3 2s linear;
 }
-
-
 
 @keyframes cargaFondo3 {
     0% {
         background-position: 0 0;
         opacity: 0;
-        /* Comenzar desde abajo */
     }
 
     100% {
-        background-position: auto 100%;
+        background-position: 0 100%;
         opacity: 1;
-        /* Cargar completamente */
     }
 }
 
-h3 {
-    margin-bottom: 20px;
-}
-
-/* IMG TXT ANIMATE 4 */
-.contenedor-img-text-animate4 {
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-}
-
-.contenedor-img-text-animate4 span {
-    font-family: "Fira Sans", sans-serif;
-    font-weight: 900;
+/* ANIMACIÓN IMAGEN EN TEXTO: FONDO EN MOVIMIENTO */
+.img-txt-animate4 {
     font-size: 60px;
     padding: .25em 0 .325em;
-    display: block;
-    margin: 0 auto;
     letter-spacing: 10px;
 
-    /* Clip Background Image */
     background-image: url('../img/colores.jpg');
 
-    /*Define que la imagen de fondo se recorte según el contenido del texto.*/
-    background-clip: text;
-
-    /* Animate Background Image */
-    /*Hace que el color del texto sea transparente para que la imagen de fondo sea visible a través de él.*/
-    color: transparent;
-
-    /*10 segundos de animación con una interpolación lineal y se repite infinitamente.*/
+    /* 10 segundos de animación lineal que se repite infinitamente */
     animation: animateText4 10s linear infinite;
 
-    /* Activate hardware acceleration for smoother animations */
+    /* Activa la aceleración por hardware para una animación más fluida */
     transform: translate3d(0, 0, 0);
-
-    /*Oculta la parte posterior del elemento durante las transformaciones 3D, 
-    lo que mejora el rendimiento de la animación.*/
     backface-visibility: hidden;
 }
 
-
-/* Animate Background Image */
 @keyframes animateText4 {
     0% {
         background-position: -200% 50%;
@@ -304,115 +205,316 @@ h3 {
     }
 }
 
-
-
-/* CONTADOR IMG ANIMATE */
-.contenedor-contador-animate {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-    padding-bottom: 20px;
+/* TEXTOS RANDOM (scramble)
+   Fuente monoespaciada: todos los caracteres ocupan el mismo ancho,
+   así el texto no "tiembla" mientras cambian los caracteres. */
+.texto-scramble {
+    font-family: "Fira Mono", monospace;
+    font-size: 24px;
+    font-weight: bold;
+    white-space: pre;
 }
 
-#contador-img-text {
-    padding: 10px;
-    font-size: 30px;
+/* OLA DE COLORES
+   El gradiente mide el doble del texto y repite los colores en cada mitad:
+   al desplazarlo una mitad, el loop no tiene saltos. */
+.texto-gradiente {
+    font-size: 48px;
     font-weight: 900;
-    font-family: "Fira Sans", sans-serif;
+    text-align: center;
+    background-image: linear-gradient(90deg,
+            #ff6b6b 0%, #feca57 16.66%, #48dbfb 33.33%,
+            #ff6b6b 50%, #feca57 66.66%, #48dbfb 83.33%,
+            #ff6b6b 100%);
+    background-size: 200% 100%;
     color: transparent;
-    background-image: linear-gradient(to bottom, transparent 0%, transparent 50%, #255957 50%, #255957 100%);
-    background-size: auto 200%;
-    background-position: 0 100%;
-    /* Comenzar desde abajo */
+    -webkit-background-clip: text;
     background-clip: text;
-    animation: cargaFondo4 2s ease-out;
+    animation: olaColores 4s linear infinite;
 }
 
-@keyframes cargaFondo4 {
+@keyframes olaColores {
+    from {
+        background-position: 0% 0;
+    }
+
+    to {
+        background-position: 100% 0;
+    }
+}
+
+/* BRILLO QUE PASA
+   Una franja clara dentro de un gradiente oscuro cruza el texto y después
+   hace una pausa antes de volver a pasar. */
+.texto-brillo {
+    font-size: 48px;
+    font-weight: 900;
+    text-align: center;
+    background-image: linear-gradient(110deg, #444 42%, #fff 50%, #444 58%);
+    background-size: 250% 100%;
+    /* Estado de reposo: la franja queda fuera del texto */
+    background-position: 100% 0;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: brillo 3s ease-in-out infinite;
+}
+
+@keyframes brillo {
     0% {
-        background-position: 0 0;
-
-        /* Comenzar desde abajo */
+        background-position: 100% 0;
     }
 
+    50%,
     100% {
-        background-position: auto 100%;
-        /* Cargar completamente */
+        background-position: 0% 0;
     }
 }
 
-h3 {
-    margin-bottom: 20px;
-}
-
-
-/* TEXT RANDOM */
-
-.contenedor-text-random {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-    padding-bottom: 20px;
-}
-
-#text-random {
+/* MÁQUINA DE ESCRIBIR
+   El ancho crece de a un carácter (steps) y el borde derecho hace de cursor.
+   Con fuente monoespaciada, 1ch es exactamente el ancho de un carácter. */
+.texto-maquina {
+    font-family: "Fira Mono", monospace;
     font-size: 24px;
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    /* Estado final: todo el texto visible */
+    width: calc(var(--caracteres) * 1ch);
+    border-right: 3px solid currentColor;
+    padding-right: 2px;
+    animation:
+        escribir 2.5s steps(var(--caracteres)) both,
+        cursor 0.8s step-end infinite;
 }
 
-/* TEXT RANDOM 2 */
+@keyframes escribir {
+    from {
+        width: 0;
+    }
+}
 
-.contenedor-text-random2 {
+@keyframes cursor {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* TEXTO NEÓN
+   Varias capas de text-shadow simulan el brillo del tubo; la animación lo
+   apaga por instantes como un cartel que falla. */
+.panel-oscuro {
+    background: #111;
+    border-radius: 12px;
+    padding: 20px 40px;
+}
+
+.texto-neon {
+    font-size: 56px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: #fff;
+    text-shadow:
+        0 0 4px #fff,
+        0 0 10px #ff2fb3,
+        0 0 20px #ff2fb3,
+        0 0 40px #ff2fb3,
+        0 0 80px #ff2fb3;
+    animation: parpadeoNeon 4s linear infinite;
+}
+
+@keyframes parpadeoNeon {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        opacity: 1;
+    }
+
+    20%, 24%, 55% {
+        opacity: 0.3;
+        text-shadow: none;
+    }
+}
+
+/* GLITCH
+   Dos copias del texto (::before roja y ::after cian) se desplazan y se
+   recortan en franjas horizontales durante unos instantes de cada ciclo. */
+.texto-glitch {
+    position: relative;
+    font-size: 48px;
+    font-weight: 900;
+    color: #222;
+    animation: glitchTexto 3s steps(1) infinite;
+}
+
+.texto-glitch::before,
+.texto-glitch::after {
+    content: attr(data-texto);
+    position: absolute;
+    inset: 0;
+    /* En reposo, las copias quedan ocultas */
+    clip-path: inset(0 0 100% 0);
+}
+
+.texto-glitch::before {
+    color: #ff2b4f;
+    animation: glitchCopia1 3s steps(1) infinite;
+}
+
+.texto-glitch::after {
+    color: #00e5ff;
+    animation: glitchCopia2 3s steps(1) infinite;
+}
+
+@keyframes glitchTexto {
+    0%, 82%, 100% {
+        transform: none;
+    }
+
+    84% {
+        transform: skewX(-8deg);
+    }
+
+    90% {
+        transform: skewX(6deg);
+    }
+
+    94% {
+        transform: none;
+    }
+}
+
+@keyframes glitchCopia1 {
+    0%, 80%, 100% {
+        clip-path: inset(0 0 100% 0);
+        transform: none;
+    }
+
+    82% {
+        clip-path: inset(10% 0 60% 0);
+        transform: translate(-6px, -2px);
+    }
+
+    86% {
+        clip-path: inset(55% 0 20% 0);
+        transform: translate(5px, 1px);
+    }
+
+    90% {
+        clip-path: inset(30% 0 45% 0);
+        transform: translate(-4px, 2px);
+    }
+
+    94% {
+        clip-path: inset(75% 0 5% 0);
+        transform: translate(3px, -1px);
+    }
+}
+
+@keyframes glitchCopia2 {
+    0%, 80%, 100% {
+        clip-path: inset(0 0 100% 0);
+        transform: none;
+    }
+
+    83% {
+        clip-path: inset(65% 0 10% 0);
+        transform: translate(6px, 2px);
+    }
+
+    87% {
+        clip-path: inset(15% 0 70% 0);
+        transform: translate(-5px, -1px);
+    }
+
+    91% {
+        clip-path: inset(40% 0 35% 0);
+        transform: translate(4px, 1px);
+    }
+
+    95% {
+        clip-path: inset(5% 0 80% 0);
+        transform: translate(-3px, 2px);
+    }
+}
+
+/* SUBRAYADO ANIMADO
+   La línea es un gradiente de fondo de 2px de alto; al pasar el mouse (o al
+   enfocar con el teclado) su ancho pasa de 0% a 100%. */
+.menu-subrayado {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-    padding-bottom: 20px;
+    gap: 32px;
 }
 
-#text-random2 {
-    font-size: 24px;
-    font-weight: bold;
+.menu-subrayado a {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    padding-bottom: 4px;
+    background-image: linear-gradient(rgb(214, 64, 64), rgb(214, 64, 64));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 2px;
+    transition: background-size 0.3s ease;
 }
 
-/* TEXT RANDOM BINARIO*/
-
-.contenedor-text-binary {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-    padding-bottom: 20px;
+.menu-subrayado a:hover,
+.menu-subrayado a:focus-visible {
+    background-size: 100% 2px;
 }
 
-#text-binary {
-    font-size: 24px;
-    font-weight: bold;
+/* LETRAS EN CASCADA
+   Cada letra (creada por textCascada.js) usa su índice --i para empezar
+   la animación un poco después que la anterior. */
+.texto-cascada {
+    font-size: 40px;
+    font-weight: 800;
 }
 
-/* TEXT RANDOM BINARIO 2*/
-
-.contenedor-text-binary2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    margin: 0 auto;
-    padding-bottom: 20px;
+.texto-cascada .letra {
+    display: inline-block;
+    /* Para que los espacios conserven su ancho */
+    white-space: pre;
+    animation: caer 0.6s cubic-bezier(.3, 1.6, .5, 1) both;
+    animation-delay: calc(var(--i) * 60ms);
 }
 
-#text-binary2 {
-    font-size: 24px;
-    font-weight: bold;
+@keyframes caer {
+    from {
+        opacity: 0;
+        transform: translateY(-1.2em);
+    }
+}
+
+/* PALABRAS QUE ROTAN */
+.frase-rotativa {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.palabra-rotativa {
+    font-family: "Fira Mono", monospace;
+    color: rgb(214, 64, 64);
+    white-space: pre;
+}
+
+/* ANIMACIÓN AL APARECER EN PANTALLA
+   alAparecer.js agrega la clase "animar-al-aparecer" al <html> y "visible" a cada
+   .demo cuando entra en pantalla. Hasta entonces, las animaciones CSS quedan
+   pausadas en su primer cuadro. */
+.animar-al-aparecer .demo:not(.visible) *,
+.animar-al-aparecer .demo:not(.visible) *::before,
+.animar-al-aparecer .demo:not(.visible) *::after {
+    animation-play-state: paused !important;
+}
+
+/* Si el usuario pidió reducir el movimiento, se desactivan las animaciones CSS
+   (cada elemento queda en su estado final) */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
 }
