@@ -7,7 +7,7 @@ Este proyecto contiene una colección de animaciones para texto utilizando HTML,
 - **index.html**: Página principal que muestra todos los ejemplos de animaciones.
 - **css/style.css**: Estilos y animaciones CSS para los textos e imágenes de fondo.
 - **img/**: Imágenes utilizadas como fondo en los textos animados.
-- **js/**: Scripts JavaScript que implementan las animaciones dinámicas.
+- **js/**: Scripts JavaScript que implementan las animaciones dinámicas. `alAparecer.js` debe cargarse antes que los demás.
 
 ## Animaciones incluidas
 
@@ -53,9 +53,54 @@ Para agregar una variante nueva alcanza con un atributo en el HTML:
 - `data-velocidad`: milisegundos entre cada letra revelada (50 por defecto).
 - Implementación: [`js/textScramble.js`](js/textScramble.js)
 
+### 7. Ola de Colores
+Un gradiente de varios colores recorre el texto en loop. El gradiente repite sus colores en cada mitad, así el ciclo no tiene saltos.
+- Implementación: solo CSS (`.texto-gradiente`)
+
+### 8. Brillo que Pasa
+Una franja de luz cruza el texto cada pocos segundos, como un reflejo sobre metal.
+- Implementación: solo CSS (`.texto-brillo`)
+
+### 9. Máquina de Escribir
+El texto aparece letra por letra con un cursor que parpadea. Usa `steps()` y la unidad `ch` de la fuente monoespaciada.
+- En el HTML se indica la cantidad de caracteres con la variable `--caracteres`: `<div class="texto-maquina" style="--caracteres: 25">...</div>`
+- Implementación: solo CSS (`.texto-maquina`)
+
+### 10. Texto Neón
+Brillo de neón hecho con varias capas de `text-shadow`, que titila de vez en cuando como un cartel que falla.
+- Implementación: solo CSS (`.texto-neon`)
+
+### 11. Glitch
+El texto se duplica en rojo y cian, con desplazamientos y cortes horizontales durante un instante de cada ciclo.
+- Las copias se generan con `::before` y `::after` a partir del atributo `data-texto`.
+- Implementación: solo CSS (`.texto-glitch`)
+
+### 12. Subrayado Animado
+Una línea se dibuja debajo de los links al pasar el mouse o al enfocarlos con el teclado.
+- Implementación: solo CSS (`.menu-subrayado`)
+
+### 13. Letras en Cascada
+Cada letra entra por separado cayendo con un pequeño rebote, un poco después que la anterior.
+- El JS separa el texto en una `<span>` por letra y el CSS escalona la animación con la variable `--i`.
+- Uso: `<div class="texto-cascada" data-cascada>Letras en cascada</div>`
+- Implementación: [`js/textCascada.js`](js/textCascada.js)
+
+### 14. Palabras que Rotan
+La última palabra de una frase va cambiando cada pocos segundos, con el efecto scramble en cada cambio.
+- Uso: `Hacemos sitios <span data-palabras-rotativas="rápidos, modernos, accesibles">rápidos</span>`
+- Atributos opcionales: `data-pausa` (milisegundos que queda cada palabra, 2000 por defecto) y `data-caracteres`.
+- Implementación: [`js/palabrasRotativas.js`](js/palabrasRotativas.js)
+
+## Animaciones al aparecer en pantalla
+
+Todas las animaciones arrancan cuando el ejemplo aparece en pantalla, no apenas carga la página, para que se vean aunque estén más abajo.
+- [`js/alAparecer.js`](js/alAparecer.js) usa `IntersectionObserver`. Agrega la clase `visible` a cada contenedor `.demo` al aparecer, y mientras tanto el CSS deja pausadas las animaciones CSS.
+- También ofrece `cuandoAparezca(elemento)`, que devuelve una Promise. La usan los contadores y los textos random a través de su opción `esperar`.
+- Si el navegador no soporta `IntersectionObserver`, las animaciones arrancan de inmediato.
+
 ## Accesibilidad
 
-- Los textos random muestran la animación como decorativa (`aria-hidden`) y dejan el texto final disponible para lectores de pantalla.
+- Los textos random, las letras en cascada, las palabras que rotan y el glitch muestran la animación como decorativa (`aria-hidden`) y dejan el texto final disponible para lectores de pantalla.
 - Si el sistema tiene activada la opción de reducir el movimiento (`prefers-reduced-motion`), las animaciones se desactivan y cada ejemplo se muestra directamente en su estado final.
 
 ## Cómo usar

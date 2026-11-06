@@ -3,7 +3,8 @@ function incrementarNumeroCircle({
     inicio = 0,
     fin = 100,
     paso = 1,
-    intervalo = 50
+    intervalo = 50,
+    esperar = Promise.resolve()
 } = {}) {
     let contador = inicio;
     const numero = document.getElementById(elementoId);
@@ -20,7 +21,6 @@ function incrementarNumeroCircle({
 
     // Configurar el círculo inicialmente
     circulo.style.strokeDasharray = `${circunferencia} ${circunferencia}`;
-    circulo.style.strokeDashoffset = circunferencia;
 
     // Actualiza el número y el círculo de progreso
     const mostrar = valor => {
@@ -35,16 +35,22 @@ function incrementarNumeroCircle({
         return;
     }
 
-    const timerUp = setInterval(() => {
-        mostrar(contador);
-        contador += paso;
+    mostrar(inicio);
 
-        if (contador > fin) {
-            clearInterval(timerUp);
-        }
-    }, intervalo);
+    // La animación arranca cuando se cumple "esperar" (por ejemplo, al aparecer en pantalla)
+    esperar.then(() => {
+        const timerUp = setInterval(() => {
+            mostrar(contador);
+            contador += paso;
+
+            if (contador > fin) {
+                clearInterval(timerUp);
+            }
+        }, intervalo);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    incrementarNumeroCircle();
+    // Arranca cuando el círculo aparece en pantalla
+    incrementarNumeroCircle({ esperar: cuandoAparezca(document.querySelector('.circle-container')) });
 });

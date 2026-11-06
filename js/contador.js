@@ -1,4 +1,4 @@
-function incrementarNumero({ elementoId = 'contador', inicio = 0, fin = 75, paso = 1, intervalo = 50 } = {}) {
+function incrementarNumero({ elementoId = 'contador', inicio = 0, fin = 75, paso = 1, intervalo = 50, esperar = Promise.resolve() } = {}) {
     let contador = inicio;
     const numero = document.getElementById(elementoId);
 
@@ -10,15 +10,21 @@ function incrementarNumero({ elementoId = 'contador', inicio = 0, fin = 75, paso
         return;
     }
 
-    const timer = setInterval(() => {
-        numero.textContent = `${contador}%`;  // Actualiza el DOM
-        contador += paso;                     // Incrementa el contador
-        if (contador > fin) {                 // Si llegó al final
-            clearInterval(timer);             // Detiene la animación
-        }
-    }, intervalo); // Cada 50ms por defecto
+    numero.textContent = `${inicio}%`;
+
+    // La animación arranca cuando se cumple "esperar" (por ejemplo, al aparecer en pantalla)
+    esperar.then(() => {
+        const timer = setInterval(() => {
+            numero.textContent = `${contador}%`;  // Actualiza el DOM
+            contador += paso;                     // Incrementa el contador
+            if (contador > fin) {                 // Si llegó al final
+                clearInterval(timer);             // Detiene la animación
+            }
+        }, intervalo); // Cada 50ms por defecto
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    incrementarNumero(); // Podés pasarle parámetros si querés cambiar el comportamiento
+    // Arranca cuando el contador aparece en pantalla
+    incrementarNumero({ esperar: cuandoAparezca(document.getElementById('contador')) });
 });

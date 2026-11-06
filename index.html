@@ -68,6 +68,45 @@
     </div>
     <hr>
     <div class="demo">
+        <h3>OLA DE COLORES</h3>
+        <div class="texto-gradiente">OLA DE COLORES</div>
+    </div>
+    <hr>
+    <div class="demo">
+        <h3>BRILLO QUE PASA</h3>
+        <div class="texto-brillo">BRILLO METÁLICO</div>
+    </div>
+    <hr>
+    <div class="demo">
+        <h3>MÁQUINA DE ESCRIBIR</h3>
+        <!-- --caracteres: cantidad de caracteres del texto (define el ancho y los pasos) -->
+        <div class="texto-maquina" style="--caracteres: 25">Escribiendo con CSS puro.</div>
+    </div>
+    <hr>
+    <div class="demo">
+        <h3>TEXTO NEÓN</h3>
+        <div class="panel-oscuro">
+            <div class="texto-neon">ABIERTO</div>
+        </div>
+    </div>
+    <hr>
+    <div class="demo">
+        <h3>GLITCH</h3>
+        <!-- data-texto se usa para dibujar las copias desplazadas en rojo y cian -->
+        <div class="texto-glitch" data-texto="ERROR DE SEÑAL" aria-hidden="true">ERROR DE SEÑAL</div>
+        <span class="sr-only">ERROR DE SEÑAL</span>
+    </div>
+    <hr>
+    <div class="demo" id="subrayado">
+        <h3>SUBRAYADO ANIMADO (pasá el mouse)</h3>
+        <nav class="menu-subrayado" aria-label="Menú de ejemplo">
+            <a href="#subrayado">Inicio</a>
+            <a href="#subrayado">Servicios</a>
+            <a href="#subrayado">Contacto</a>
+        </nav>
+    </div>
+    <hr>
+    <div class="demo">
         <h3>TEXTO RANDOM CARACTERES</h3>
         <div class="texto-scramble" data-animar-texto data-caracteres="ascii">texto hecho con javascript</div>
     </div>
@@ -86,10 +125,26 @@
         <h3>TEXTO RANDOM BINARIO: ORDEN ALEATORIO</h3>
         <div class="texto-scramble" data-animar-texto data-caracteres="binario" data-orden="aleatorio">texto hecho con javascript</div>
     </div>
+    <hr>
+    <div class="demo">
+        <h3>LETRAS EN CASCADA</h3>
+        <div class="texto-cascada" data-cascada>Letras en cascada</div>
+    </div>
+    <hr>
+    <div class="demo">
+        <h3>PALABRAS QUE ROTAN</h3>
+        <div class="frase-rotativa">
+            Hacemos sitios <span class="palabra-rotativa" data-palabras-rotativas="rápidos, modernos, accesibles">rápidos</span>
+        </div>
+    </div>
+    <!-- alAparecer.js va primero: los demás scripts usan cuandoAparezca() -->
+    <script src="./js/alAparecer.js"></script>
     <script src="./js/contador.js"></script>
     <script src="./js/contador2.js"></script>
     <script src="./js/contador3.js"></script>
     <script src="./js/textScramble.js"></script>
+    <script src="./js/textCascada.js"></script>
+    <script src="./js/palabrasRotativas.js"></script>
 </body>
 
 </html>

@@ -215,6 +215,299 @@ hr {
     white-space: pre;
 }
 
+/* OLA DE COLORES
+   El gradiente mide el doble del texto y repite los colores en cada mitad:
+   al desplazarlo una mitad, el loop no tiene saltos. */
+.texto-gradiente {
+    font-size: 48px;
+    font-weight: 900;
+    text-align: center;
+    background-image: linear-gradient(90deg,
+            #ff6b6b 0%, #feca57 16.66%, #48dbfb 33.33%,
+            #ff6b6b 50%, #feca57 66.66%, #48dbfb 83.33%,
+            #ff6b6b 100%);
+    background-size: 200% 100%;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: olaColores 4s linear infinite;
+}
+
+@keyframes olaColores {
+    from {
+        background-position: 0% 0;
+    }
+
+    to {
+        background-position: 100% 0;
+    }
+}
+
+/* BRILLO QUE PASA
+   Una franja clara dentro de un gradiente oscuro cruza el texto y después
+   hace una pausa antes de volver a pasar. */
+.texto-brillo {
+    font-size: 48px;
+    font-weight: 900;
+    text-align: center;
+    background-image: linear-gradient(110deg, #444 42%, #fff 50%, #444 58%);
+    background-size: 250% 100%;
+    /* Estado de reposo: la franja queda fuera del texto */
+    background-position: 100% 0;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: brillo 3s ease-in-out infinite;
+}
+
+@keyframes brillo {
+    0% {
+        background-position: 100% 0;
+    }
+
+    50%,
+    100% {
+        background-position: 0% 0;
+    }
+}
+
+/* MÁQUINA DE ESCRIBIR
+   El ancho crece de a un carácter (steps) y el borde derecho hace de cursor.
+   Con fuente monoespaciada, 1ch es exactamente el ancho de un carácter. */
+.texto-maquina {
+    font-family: "Fira Mono", monospace;
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    /* Estado final: todo el texto visible */
+    width: calc(var(--caracteres) * 1ch);
+    border-right: 3px solid currentColor;
+    padding-right: 2px;
+    animation:
+        escribir 2.5s steps(var(--caracteres)) both,
+        cursor 0.8s step-end infinite;
+}
+
+@keyframes escribir {
+    from {
+        width: 0;
+    }
+}
+
+@keyframes cursor {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* TEXTO NEÓN
+   Varias capas de text-shadow simulan el brillo del tubo; la animación lo
+   apaga por instantes como un cartel que falla. */
+.panel-oscuro {
+    background: #111;
+    border-radius: 12px;
+    padding: 20px 40px;
+}
+
+.texto-neon {
+    font-size: 56px;
+    font-weight: 300;
+    letter-spacing: 6px;
+    color: #fff;
+    text-shadow:
+        0 0 4px #fff,
+        0 0 10px #ff2fb3,
+        0 0 20px #ff2fb3,
+        0 0 40px #ff2fb3,
+        0 0 80px #ff2fb3;
+    animation: parpadeoNeon 4s linear infinite;
+}
+
+@keyframes parpadeoNeon {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        opacity: 1;
+    }
+
+    20%, 24%, 55% {
+        opacity: 0.3;
+        text-shadow: none;
+    }
+}
+
+/* GLITCH
+   Dos copias del texto (::before roja y ::after cian) se desplazan y se
+   recortan en franjas horizontales durante unos instantes de cada ciclo. */
+.texto-glitch {
+    position: relative;
+    font-size: 48px;
+    font-weight: 900;
+    color: #222;
+    animation: glitchTexto 3s steps(1) infinite;
+}
+
+.texto-glitch::before,
+.texto-glitch::after {
+    content: attr(data-texto);
+    position: absolute;
+    inset: 0;
+    /* En reposo, las copias quedan ocultas */
+    clip-path: inset(0 0 100% 0);
+}
+
+.texto-glitch::before {
+    color: #ff2b4f;
+    animation: glitchCopia1 3s steps(1) infinite;
+}
+
+.texto-glitch::after {
+    color: #00e5ff;
+    animation: glitchCopia2 3s steps(1) infinite;
+}
+
+@keyframes glitchTexto {
+    0%, 82%, 100% {
+        transform: none;
+    }
+
+    84% {
+        transform: skewX(-8deg);
+    }
+
+    90% {
+        transform: skewX(6deg);
+    }
+
+    94% {
+        transform: none;
+    }
+}
+
+@keyframes glitchCopia1 {
+    0%, 80%, 100% {
+        clip-path: inset(0 0 100% 0);
+        transform: none;
+    }
+
+    82% {
+        clip-path: inset(10% 0 60% 0);
+        transform: translate(-6px, -2px);
+    }
+
+    86% {
+        clip-path: inset(55% 0 20% 0);
+        transform: translate(5px, 1px);
+    }
+
+    90% {
+        clip-path: inset(30% 0 45% 0);
+        transform: translate(-4px, 2px);
+    }
+
+    94% {
+        clip-path: inset(75% 0 5% 0);
+        transform: translate(3px, -1px);
+    }
+}
+
+@keyframes glitchCopia2 {
+    0%, 80%, 100% {
+        clip-path: inset(0 0 100% 0);
+        transform: none;
+    }
+
+    83% {
+        clip-path: inset(65% 0 10% 0);
+        transform: translate(6px, 2px);
+    }
+
+    87% {
+        clip-path: inset(15% 0 70% 0);
+        transform: translate(-5px, -1px);
+    }
+
+    91% {
+        clip-path: inset(40% 0 35% 0);
+        transform: translate(4px, 1px);
+    }
+
+    95% {
+        clip-path: inset(5% 0 80% 0);
+        transform: translate(-3px, 2px);
+    }
+}
+
+/* SUBRAYADO ANIMADO
+   La línea es un gradiente de fondo de 2px de alto; al pasar el mouse (o al
+   enfocar con el teclado) su ancho pasa de 0% a 100%. */
+.menu-subrayado {
+    display: flex;
+    gap: 32px;
+}
+
+.menu-subrayado a {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    padding-bottom: 4px;
+    background-image: linear-gradient(rgb(214, 64, 64), rgb(214, 64, 64));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 2px;
+    transition: background-size 0.3s ease;
+}
+
+.menu-subrayado a:hover,
+.menu-subrayado a:focus-visible {
+    background-size: 100% 2px;
+}
+
+/* LETRAS EN CASCADA
+   Cada letra (creada por textCascada.js) usa su índice --i para empezar
+   la animación un poco después que la anterior. */
+.texto-cascada {
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.texto-cascada .letra {
+    display: inline-block;
+    /* Para que los espacios conserven su ancho */
+    white-space: pre;
+    animation: caer 0.6s cubic-bezier(.3, 1.6, .5, 1) both;
+    animation-delay: calc(var(--i) * 60ms);
+}
+
+@keyframes caer {
+    from {
+        opacity: 0;
+        transform: translateY(-1.2em);
+    }
+}
+
+/* PALABRAS QUE ROTAN */
+.frase-rotativa {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.palabra-rotativa {
+    font-family: "Fira Mono", monospace;
+    color: rgb(214, 64, 64);
+    white-space: pre;
+}
+
+/* ANIMACIÓN AL APARECER EN PANTALLA
+   alAparecer.js agrega la clase "animar-al-aparecer" al <html> y "visible" a cada
+   .demo cuando entra en pantalla. Hasta entonces, las animaciones CSS quedan
+   pausadas en su primer cuadro. */
+.animar-al-aparecer .demo:not(.visible) *,
+.animar-al-aparecer .demo:not(.visible) *::before,
+.animar-al-aparecer .demo:not(.visible) *::after {
+    animation-play-state: paused !important;
+}
+
 /* Si el usuario pidió reducir el movimiento, se desactivan las animaciones CSS
    (cada elemento queda en su estado final) */
 @media (prefers-reduced-motion: reduce) {

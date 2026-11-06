@@ -1,10 +1,10 @@
 // Animación "scramble": el texto aparece entre caracteres aleatorios que
 // cambian constantemente hasta que cada letra se revela en su lugar.
 //
-// Uso declarativo en el HTML:
+// Uso declarativo en el HTML (arranca cuando el texto aparece en pantalla):
 //   <div data-animar-texto data-caracteres="binario" data-orden="aleatorio">Hola</div>
 //
-// Uso desde JS:
+// Uso desde JS (devuelve una Promise que se resuelve al terminar):
 //   animarTexto(elemento, { caracteres: '01', velocidad: 50, orden: 'secuencial' });
 
 // Juegos de caracteres predefinidos (se pueden usar por nombre en data-caracteres)
@@ -15,10 +15,19 @@ const CONJUNTOS_CARACTERES = {
     binario: '01'
 };
 
-function animarTexto(elemento, { caracteres = CONJUNTOS_CARACTERES.ascii, velocidad = 50, orden = 'secuencial' } = {}) {
-    if (!elemento) return console.warn('animarTexto: elemento no encontrado.');
+function animarTexto(elemento, {
+    texto,                          // Texto final (por defecto, el contenido del elemento)
+    caracteres = CONJUNTOS_CARACTERES.ascii,
+    velocidad = 50,                 // Milisegundos entre cada letra revelada
+    orden = 'secuencial',           // 'secuencial' o 'aleatorio'
+    esperar = Promise.resolve()     // La animación arranca cuando se cumple esta Promise
+} = {}) {
+    if (!elemento) {
+        console.warn('animarTexto: elemento no encontrado.');
+        return Promise.resolve();
+    }
 
-    const textoFinal = elemento.textContent.trim();
+    const textoFinal = (texto ?? elemento.textContent).trim();
     const letrasFinales = Array.from(textoFinal);
     const juego = Array.from(CONJUNTOS_CARACTERES[caracteres] || caracteres);
     const caracterAleatorio = () => juego[Math.floor(Math.random() * juego.length)];
@@ -37,7 +46,7 @@ function animarTexto(elemento, { caracteres = CONJUNTOS_CARACTERES.ascii, veloci
     // Si el usuario pidió reducir el movimiento, mostramos el texto final directamente
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         textoVisual.textContent = textoFinal;
-        return;
+        return Promise.resolve();
     }
 
     // Los espacios se respetan desde el inicio para que se distingan las palabras
@@ -58,14 +67,22 @@ function animarTexto(elemento, { caracteres = CONJUNTOS_CARACTERES.ascii, veloci
             .join('');
     };
 
+    // Mientras espera, ya muestra los caracteres aleatorios
     dibujar();
 
-    const timer = setInterval(() => {
-        // En cada paso se revela una letra y el resto sigue cambiando
-        revelado[pendientes.shift()] = true;
-        dibujar();
-        if (pendientes.length === 0) clearInterval(timer);
-    }, velocidad);
+    return esperar.then(() => new Promise(resolve => {
+        if (pendientes.length === 0) return resolve();
+
+        const timer = setInterval(() => {
+            // En cada paso se revela una letra y el resto sigue cambiando
+            revelado[pendientes.shift()] = true;
+            dibujar();
+            if (pendientes.length === 0) {
+                clearInterval(timer);
+                resolve();
+            }
+        }, velocidad);
+    }));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -74,7 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
         animarTexto(elemento, {
             caracteres: caracteres || undefined,
             orden: orden || undefined,
-            velocidad: velocidad ? Number(velocidad) : undefined
+            velocidad: velocidad ? Number(velocidad) : undefined,
+            esperar: cuandoAparezca(elemento)
         });
     });
 });
