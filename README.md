@@ -23,7 +23,8 @@ Variantes de animaciones donde el fondo del texto se va "cargando" con diferente
 - Implementación: Solo CSS en [`css/style.css`](css/style.css)
 
 ### 4. Contador con Imagen de Fondo
-Contador animado que utiliza un gradiente como fondo del texto.
+Contador animado cuyo texto se va llenando de color al mismo ritmo que sube el número: cuando marca 50%, el texto está pintado justo hasta la mitad.
+- El JS actualiza la variable CSS `--progreso` (de 0 a 100) y el CSS la usa para posicionar el gradiente de fondo.
 - Implementación: [`js/contador2.js`](js/contador2.js)
 
 ### 5. Contador con Círculo de Progreso
@@ -32,21 +33,30 @@ Contador animado acompañado de un círculo SVG que se va completando a medida q
 - La función `incrementarNumeroCircle()` acepta opciones configurables: `elementoId`, `inicio`, `fin`, `paso` e `intervalo`.
 - Implementación: [`js/contador3.js`](js/contador3.js)
 
-### 6. Texto Random Caracteres
-Animación donde el texto aparece reemplazando caracteres aleatorios hasta mostrar el mensaje final.
-- Implementación: [`js/textRandom.js`](js/textRandom.js)
+### 6. Textos Random (scramble)
+El texto aparece entre caracteres aleatorios que cambian constantemente, y cada letra se va revelando hasta mostrar el mensaje final. Los espacios se respetan desde el inicio para que se distingan las palabras, y se usa una fuente monoespaciada (Fira Mono) para que el texto no cambie de ancho durante la animación.
 
-### 7. Texto Random Alfabeto
-Similar al anterior, pero los caracteres aleatorios pertenecen solo al alfabeto.
-- Implementación: [`js/textRandom2.js`](js/textRandom2.js)
+Todas las variantes usan la misma función `animarTexto()`:
+- **Caracteres**: con todos los caracteres ASCII imprimibles.
+- **Alfabeto**: solo con letras (incluida la ñ).
+- **Binario**: solo con 0 y 1.
+- **Binario en orden aleatorio**: las letras se revelan en orden aleatorio en lugar de izquierda a derecha.
 
-### 8. Texto Random Binario
-El texto aparece reemplazando caracteres por 0 y 1 hasta revelar el mensaje final.
-- Implementación: [`js/textBinary.js`](js/textBinary.js)
+Para agregar una variante nueva alcanza con un atributo en el HTML:
 
-### 9. Texto Random Binario Mejorado
-Versión mejorada donde los caracteres revelados permanecen fijos y el resto sigue cambiando.
-- Implementación: [`js/textBinary2.js`](js/textBinary2.js)
+```html
+<div class="texto-scramble" data-animar-texto data-caracteres="binario" data-orden="aleatorio">Hola mundo</div>
+```
+
+- `data-caracteres`: `ascii`, `alfabeto`, `binario` o cualquier cadena de caracteres propia (por ejemplo `"★☆"`).
+- `data-orden`: `secuencial` (por defecto) o `aleatorio`.
+- `data-velocidad`: milisegundos entre cada letra revelada (50 por defecto).
+- Implementación: [`js/textScramble.js`](js/textScramble.js)
+
+## Accesibilidad
+
+- Los textos random muestran la animación como decorativa (`aria-hidden`) y dejan el texto final disponible para lectores de pantalla.
+- Si el sistema tiene activada la opción de reducir el movimiento (`prefers-reduced-motion`), las animaciones se desactivan y cada ejemplo se muestra directamente en su estado final.
 
 ## Cómo usar
 
